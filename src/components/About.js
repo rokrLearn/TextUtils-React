@@ -1,32 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 
-export default function About() {
+export default function About(props) {
 
-    const[myStyle, setMyStyle] = useState({
-        color: 'black',
-        backgroundColor: 'white',
-        border: '2px solid white'
-    })
-
-    const [btnText, setBtnText] = useState("Enable Dark Mode");
-
-    const toggleStyle = () => {
-        if (myStyle.color === 'white'){
-            setMyStyle({
-                color: 'black',
-                backgroundColor: 'white',
-            })
-            setBtnText("Enable Dark Mode");
-        }
-        else {
-            setMyStyle({
-                color: 'white',
-                backgroundColor: 'black',
-                border: '1px solid black'
-            })
-            setBtnText("Enable Light Mode");
-        }
-    }
+  let myStyle = {
+    color: props.mode === 'dark'?'white':'grey',
+    backgroundColor: props.mode === 'dark'?'grey':'white'
+  }
 
   return (
     <div className="container" style={myStyle}>
@@ -43,7 +22,7 @@ export default function About() {
               aria-controls="collapseOne"
               style={myStyle}
             >
-              Accordion Item #1
+              <strong>Analyze your text</strong>
             </button>
           </h2>
           <div
@@ -74,7 +53,7 @@ export default function About() {
               aria-controls="collapseTwo"
               style={myStyle}
             >
-              Accordion Item #2
+              <strong>Free to use</strong>
             </button>
           </h2>
           <div
@@ -105,7 +84,7 @@ export default function About() {
               aria-controls="collapseThree"
               style={myStyle}
             >
-              Accordion Item #3
+              <strong>Browser Compatible</strong>
             </button>
           </h2>
           <div
@@ -125,11 +104,6 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="container my-3">
-        <button type="button" className="btn btn-primary" onClick={toggleStyle}>
-          {btnText}
-        </button>
       </div>
     </div>
   );
